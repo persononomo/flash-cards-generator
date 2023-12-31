@@ -41,5 +41,5 @@ jobs:
 
       - name: Deploy to AWS Lambda
         run: |
-          serverless deploy
+          npm run deploy
 
