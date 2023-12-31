@@ -2,13 +2,15 @@
   "name": "flash-cards-generator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
+    "deploy": "sls deploy",
+    "deploy:local": "AWS_PROFILE=persononomo sls deploy",
+    "remove": "sls remove",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "persononomo",
+  "license": "MIT",
   "dependencies": {
     "serverless-python-requirements": "^6.0.1"
   }

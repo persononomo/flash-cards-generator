@@ -9,6 +9,10 @@ provider:
   stage: dev
   region: us-east-1
 
+custom:
+  pythonRequirements:
+    dockerizePip: true
+
 functions:
   generateFlashcards:
     handler: src/main/handler.lambda_handler
