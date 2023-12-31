@@ -1,3 +1,5 @@
+import json
+from io import BytesIO
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import cm
@@ -5,12 +7,32 @@ from reportlab.lib import colors
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 
+def lambda_handler(event, context):
+    # Example input processing (customize as needed)
+    word_pairs = event.get("word_pairs", [])
+    rows = event.get("rows", 3)
+    cols = event.get("cols", 2)
+    main_color = colors.toColor(event.get("main_color", colors.lightblue))
+    opposite_color = colors.toColor(event.get("opposite_color", colors.lightgreen))
 
-def create_flash_cards(word_pairs, rows, cols, main_color, opposite_color, filename="flash_cards.pdf"):
+    # Create a PDF in memory
+    buffer = BytesIO()
+    create_flash_cards(word_pairs, rows, cols, main_color, opposite_color, buffer)
+
+    # Return the PDF as a base64-encoded string
+    pdf_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    return {
+        "statusCode": 200,
+        "body": json.dumps({"pdf": pdf_base64}),
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+def create_flash_cards(word_pairs, rows, cols, main_color, opposite_color, buffer):
     # Register a font that supports Cyrillic characters
     pdfmetrics.registerFont(TTFont('DejaVuSans', 'src/resources/fonts/djsans/DejaVuSans.ttf'))
 
-    c = canvas.Canvas(filename, pagesize=A4)
+    c = canvas.Canvas(buffer, pagesize=A4)
     width, height = A4
     margin = 2 * cm
     x_step = (width - 2 * margin) / cols
@@ -103,9 +125,3 @@ def create_flash_cards(word_pairs, rows, cols, main_color, opposite_color, filen
         draw_page(opposite_words, opposite=True)
 
     c.save()
-
-
-# Example usage
-word_pairs_for_print = [("AAAAAAAAAAAAAA AAAAAAAAAAABBBAAAAAAAAAAAAAA AAAAAAAAAAAAAA", "AA"), ("B", "BB"), ("C", "CC"), ("D", "DD"), ("E", "EE"), ("F", "FF"), ("G", "GG"), ("H", "HH"),
-                        ("A", "AA"), ("B", "BB"), ("C", "CC"), ("D", "DD"), ("AAAAAAAAAAAAAA AAAAAAAAAAABBBAAAAAAAAAAAAAA AAAAAAAAAAAAAA", "EE"), ("F", "FF"), ("G", "GG"), ("H", "HH")]
-create_flash_cards(word_pairs_for_print, 5, 3, colors.lightblue, colors.lightgreen)
