@@ -1,0 +1,27 @@
+env:
+  commonjs: true
+  es6: true
+  node: true
+  mocha: true
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:import/recommended
+  - plugin:promise/recommended
+  - plugin:n/recommended
+parser: "@typescript-eslint/parser"
+plugins:
+  - lcom
+parserOptions:
+  ecmaVersion: 2019
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+rules:
+  no-underscore-dangle: 
+    - 0
+  lcom/lcom4: 
+    - off
+  n/no-unpublished-require: 
+    - warn
+  n/no-unsupported-features/es-syntax: 
+    - warn

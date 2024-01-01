@@ -1,0 +1,40 @@
+{
+  "name": "flashcards-cdk",
+  "version": "1.0.0",
+  "description": "AWS CDK for Flashcards",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "bootstrap": "cdk bootstrap --profile persononomo",
+    "list": "cdk list --profile persononomo",
+    "deploy": "tsc && cdk deploy --all --profile persononomo",
+    "deploy-single": "tsc && cdk deploy STACK_ID --profile persononomo",
+    "diff": "tsc && cdk diff --all --profile persononomo",
+    "destroy-single": "tsc && cdk destroy STACK_ID --profile persononomo",
+    "lint": "eslint ."
+  },
+  "author": {
+    "name": "persononomo",
+    "organization": false
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/jest": "^29.2.3",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "eslint": "^8.25.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-lcom": "^1.0.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "cdk": "2.109.0",
+    "aws-sdk": "2.1261.0",
+    "aws-cdk-lib": "2.109.0"
+  }
+}
