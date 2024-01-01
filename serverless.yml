@@ -13,7 +13,7 @@ provider:
 custom:
   pythonRequirements:
     dockerizePip: true
-  domain:
+  customDomain:
     domainName: flashcard-generator-api.oversecured.com
     basePath: ''
     stage: dev
