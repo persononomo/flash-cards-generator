@@ -14,7 +14,7 @@ custom:
   pythonRequirements:
     dockerizePip: true
   customDomain:
-    domainName: flashcard-generator-api.oversecured.com
+    domainName: flashcard-generator-api.kozub.dev
     basePath: ''
     stage: dev
     createRoute53Record: true
