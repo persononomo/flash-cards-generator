@@ -2,6 +2,7 @@ service: flashcard-generator
 
 plugins:
   - serverless-python-requirements
+  - serverless-domain-manager
 
 provider:
   name: aws
@@ -12,6 +13,11 @@ provider:
 custom:
   pythonRequirements:
     dockerizePip: true
+  domain:
+    domainName: flashcard-generator-api.oversecured.com
+    basePath: ''
+    stage: dev
+    createRoute53Record: true
 
 functions:
   generateFlashcards:

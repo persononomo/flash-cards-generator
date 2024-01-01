@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "domain:create": "sls create_domain",
     "deploy": "sls deploy",
     "deploy:local": "AWS_PROFILE=persononomo sls deploy",
     "remove": "sls remove",
@@ -12,6 +13,7 @@
   "author": "persononomo",
   "license": "MIT",
   "dependencies": {
-    "serverless-python-requirements": "^6.0.1"
+    "serverless-python-requirements": "^6.0.1",
+    "serverless-domain-manager": "^7.3.3"
   }
 }
